@@ -1,0 +1,83 @@
+#include <stdio.h>
+
+int findlen(char str[]){
+	int len = 0;
+	while(str[len]!='\0'){
+		len++;
+	}
+	return len;
+}
+int count(char str[]){
+	int count = 0;
+	int len =0;
+	while(str[len]!='\0'){
+		if (str[len]!= ' '){
+			count++;
+		}
+		len++;
+	}
+	return count;
+}
+void cancelout(char name1[],char name2[]){
+	int min,max,len1,len2;
+	len1 = findlen(name1);
+	len2 = findlen(name2);
+	min = (len1<len2)?len1:len2;
+	max = (len1<len2)?len2:len1;
+	if(min==len1){
+		for(int i =0 ; i < min ;i++){
+			for(int j=0; j<max ;j++){
+				if(name1[i]==name2[j]){
+					name1[i] = ' ';
+					name2[j] = ' ';
+				    break;
+				}
+		    }
+	    }
+	}
+	else{
+		for(int i =0 ; i < min ;i++){
+			for(int j=0; j<max ;j++){
+				if(name2[i]==name1[j]){
+					name2[i] = ' ';
+					name1[j] = ' ';
+				    break;
+				}
+		    }
+	    }
+	}
+}
+char flames(int n){
+	char flames[] = "FLAMES";
+    int len = 6;
+    int pos = 0; 
+    for (int i = 6; i > 1; i--) {
+    	pos = (pos + n - 1) % i;
+    	for (int k = pos; k < i - 1; k++) {
+    		flames[k] = flames[k + 1];
+    	}
+    }
+    return (flames[0]);
+}
+
+char* flame_out(char a){
+	char* flames_out[] = {"Friends","Love","Affection","Marriage","Enemy","Sister"};
+	for(int i =0;i<6;i++){
+		if (flames_out[i][0] == a){
+			return flames_out[i];
+		}
+	}
+}
+int main(){
+	char name1[100];
+	char name2[100];
+	printf("Name 1 : ");
+	scanf("%s",name1);
+	printf("Name 2 : ");
+	scanf("%s",name2);
+	cancelout(name1,name2);
+    int remain = count(name1)+count(name2);
+    printf("%d uncancelled \n ",remain);
+    printf("%s",flame_out(flames(remain)));
+
+}
