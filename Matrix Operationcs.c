@@ -21,14 +21,14 @@ void getmat(int r,int c,int arr[r][c]){
 void addmat(int r,int c,int arr1[r][c],int arr2[r][c],int arr[r][c]){
 	for(int i =0;i<r;i++){
 		for (int j = 0; j < c;j++){
-			arr[i][j]=arr1[i][j]+arr1[i][j];
+			arr[i][j]=arr1[i][j]+arr2[i][j];
 		}
 	}
 }
 void submat(int r,int c,int arr1[r][c],int arr2[r][c],int arr[r][c]){
 	for(int i =0;i<r;i++){
 		for (int j = 0; j < c;j++){
-			arr[i][j]=arr1[i][j]-arr1[i][j];
+			arr[i][j]=arr1[i][j]-arr2[i][j];
 		}
 	}
 }
